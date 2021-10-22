@@ -1,0 +1,9 @@
+.banxin {
+  width: 1200px;
+  margin: auto;
+}
+.tanxin {
+  display: flex;
+  justify-content: space-between;
+}
+/*# sourceMappingURL=./base.css.map */
