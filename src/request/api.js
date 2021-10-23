@@ -4,5 +4,5 @@ import request from './request'
 // 精品推荐
 export const JingpinApi = () => request.get("/products/recommend")
 
-// 登录
-// export const LoginApi = (params) => request.post("/auth/loginByWeb", params)
+// 热门兑换
+export const HotApi = (params) => request.get("/products/hot")

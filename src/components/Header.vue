@@ -14,7 +14,7 @@
           <span>购物车</span>
           <b>0</b>
         </li>
-        <li class="header_btn login_btn" v-else>登录</li>
+        <li class="header_btn login_btn" v-else @click="goLogin">登录</li>
       </ul>
     </div>
   </header>
@@ -28,6 +28,12 @@ export default {
       ifLogin: false,       // 是否登录，默认false未登录
     };
   },
+  methods: {
+    goLogin(){
+      // 触发mutations去打开login
+      this.$store.commit("changeLoginShow", true)
+    }
+  }
 };
 </script>
  
