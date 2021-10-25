@@ -9,6 +9,11 @@ const instance = axios.create({
 
 // 请求拦截器
 instance.interceptors.request.use(config=>{
+    let token = localStorage.getItem("x-auth-token");
+    if(token){
+        // 如果有token，这个请求就带上token
+        config.headers["x-auth-token"] = token;
+    }
     return config;
 }, err=>{
     return Promise.reject(err)

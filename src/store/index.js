@@ -6,7 +6,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     // 登录框的状态
-    ifOpenLogin: true,
+    ifOpenLogin: false,
     // Toast的变量
     toast: {
       show: false,

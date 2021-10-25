@@ -68,6 +68,7 @@ export default {
     Title,
     Products,
   },
+  methods: {},
 };
 </script>
 <style lang="less" scoped>
@@ -96,7 +97,7 @@ export default {
     padding-top: 43px;
     padding-left: 29px;
     box-sizing: border-box;
-    transition: background-size .5s linear;
+    transition: background-size 0.5s linear;
     background-size: 100% 100%;
     cursor: pointer;
     h4 {
@@ -123,7 +124,7 @@ export default {
     &:nth-of-type(4) {
       background-image: url(../assets/images/home/integral-04.png);
     }
-    &:hover{
+    &:hover {
       background-size: 105% 105%;
     }
   }

@@ -4,36 +4,114 @@
       <section>欢迎来到叩丁狼积分商城</section>
       <ul>
         <li class="avatar_li">
-          <img width="26" class="avatar" :src="avatar" alt="" /> 用户名：游客
+          <img width="26" class="avatar" :src="userInfo.headImg" alt="" />
+          用户名：{{ userInfo.nickName }}
         </li>
-        <li>我的积分：--</li>
+        <li>我的积分：{{ userInfo.coin }}</li>
         <li>获取积分</li>
         <li>叩丁狼官网</li>
         <li class="header_btn cart_btn" v-if="ifLogin">
           <img src="../assets/images/Shopping.png" width="20" alt="" />
           <span>购物车</span>
-          <b>0</b>
+          <b>{{ cartTotal }}</b>
         </li>
         <li class="header_btn login_btn" v-else @click="goLogin">登录</li>
+        <li class="header_btn login_btn" @click="jiebangFn">解绑微信</li>
       </ul>
     </div>
   </header>
 </template>
  
 <script>
+import { UserInfoApi, WeixinLoginApi, UnBindWechatApi } from "@/request/api";
 export default {
   data() {
     return {
-      avatar: require("../assets/images/userImg.png"),  // 头像
-      ifLogin: false,       // 是否登录，默认false未登录
+      // 用户信息
+      userInfo: {
+        headImg: require("../assets/images/userImg.png"), // 头像
+        nickName: "游客",
+        coin: "--",
+      },
+      ifLogin: false, // 是否登录，默认false未登录
+      cartTotal: 0,
     };
   },
   methods: {
-    goLogin(){
+    goLogin() {
       // 触发mutations去打开login
-      this.$store.commit("changeLoginShow", true)
+      this.$store.commit("changeLoginShow", true);
+    },
+    // 一个公用函数，有code直接手机绑定微信
+    bindWechatFn() {
+      // 根据是否地址栏有code来决定是否做手机绑定微信
+      let code = this.$route.query.code;
+      if (code) {
+        // 通过微信扫码跳转过来首页的
+        WeixinLoginApi({ code }).then((res) => {
+          if (res.code === 0) {
+            // 成功
+            let obj = { content: res.message, icon: "success" };
+            this.$store.dispatch("toastAsync", obj);
+            // 存储token
+            localStorage.setItem("x-auth-token", res["x-auth-token"]);
+            // 更新Header组件
+            this.$emit("updateKeyFn");
+            // 相当于在删除地址栏的code
+            this.$router.push(this.$route.path);
+          } else if (res.code === 400) {
+            // 请重新扫描
+            let obj = { content: "请重新扫描二维码登录", icon: "danger" };
+            this.$store.dispatch("toastAsync", obj);
+            // 重新打开登录框
+            this.$store.commit("changeLoginShow", true);
+          } else if (res.code === 407) {
+            // 需要手机验证码登录
+            let obj = {
+              content: "请使用手机号登录绑定微信",
+              icon: "danger",
+            };
+            this.$store.dispatch("toastAsync", obj);
+            // 重新打开登录框
+            this.$store.commit("changeLoginShow", true);
+            // 临时保留uuid
+            sessionStorage.setItem("uuid", res.uuid);
+          } else {
+            // 直接报错
+          }
+        });
+      }
+    },
+    // 解绑微信
+    jiebangFn(){
+      UnBindWechatApi().then(res=>{
+        console.log(res);
+      })
     }
-  }
+  },
+  watch: {
+    "$route.query.code": {
+      handler(newVal, oldVal) {
+        if (newVal !== oldVal) {
+          // 调用绑定微信
+          this.bindWechatFn();
+        }
+      },
+    },
+  },
+  created() {
+    // 获取用户信息
+    UserInfoApi().then((res) => {
+      if (res.code === 0) {
+        let { cartTotal, userInfo } = res.data;
+        this.cartTotal = cartTotal;
+        this.userInfo = userInfo;
+        this.ifLogin = true;
+      }
+    });
+    // 调用绑定微信
+    this.bindWechatFn();
+  },
 };
 </script>
  

@@ -1,10 +1,13 @@
 <template>
   <div id="app">
-    <Header />
+    <!-- 
+      更新一个组件，本质是修改key
+     -->
+    <Header :key="updateKey" @updateKeyFn="updateKeyFn" />
     <Nav />
     <router-view />
     <Footer />
-    <Login />
+    <Login @updateKeyFn="updateKeyFn" />
     <transition name="fade">
       <Toast v-show="$store.state.toast.show" />
     </transition>
@@ -18,6 +21,17 @@ import Nav from "@/components/Nav.vue";
 import Login from "@/components/Login.vue"
 import Toast from "@/components/Toast.vue"
 export default {
+  data(){
+    return {
+      updateKey: 0
+    }
+  },
+  methods: {
+    // 更新Header的key值
+    updateKeyFn(){
+      this.updateKey++;
+    }
+  },
   components: {
     Header,
     Footer,

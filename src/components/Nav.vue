@@ -4,7 +4,7 @@
       <img src="../assets/images/indexLogo.png" alt="" />
       <ul class="tanxin">
         <li class="active">首页</li>
-        <li>全部商品</li>
+        <li @click="$router.push('/goods')">全部商品</li>
         <li>个人中心</li>
         <li>我的订单</li>
         <li>专属福利</li>
