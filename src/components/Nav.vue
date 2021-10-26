@@ -3,11 +3,11 @@
     <div class="banxin tanxin nav_in">
       <img src="../assets/images/indexLogo.png" alt="" />
       <ul class="tanxin">
-        <li class="active">首页</li>
-        <li @click="$router.push('/goods')">全部商品</li>
-        <li>个人中心</li>
-        <li>我的订单</li>
-        <li>专属福利</li>
+        <li @click="$router.push('/home')" :class="{'active': $route.path==='/home' || $route.path==='/'}">首页</li>
+        <li @click="$router.push('/goods')" :class="{'active': $route.path==='/goods'}">全部商品</li>
+        <li @click="$router.push('/user')" :class="{'active': $route.path==='/user'}">个人中心</li>
+        <li @click="$router.push('/order')" :class="{'active': $route.path==='/order'}">我的订单</li>
+        <li @click="$router.push('/free')" :class="{'active': $route.path==='/free'}">专属福利</li>
       </ul>
       <div class="search tanxin">
         <input type="text" placeholder="搜索全部商品直接回车" />

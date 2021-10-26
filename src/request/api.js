@@ -1,3 +1,4 @@
+import axios from 'axios'
 import qs from 'qs'
 import request from './request'
 
@@ -25,3 +26,7 @@ export const BindWechatApi = (params) => request.post("/wechatUsers/binding", qs
 
 // 解绑微信(登录状态下)
 export const UnBindWechatApi = () => request.put("/wechatUsers/unbindingWeChat")
+
+// 商品页数据请求
+export const GoodsDataApi = (params) => request.get("/products", {params})
+

@@ -83,11 +83,11 @@ export default {
       }
     },
     // 解绑微信
-    jiebangFn(){
-      UnBindWechatApi().then(res=>{
+    jiebangFn() {
+      UnBindWechatApi().then((res) => {
         console.log(res);
-      })
-    }
+      });
+    },
   },
   watch: {
     "$route.query.code": {
@@ -100,15 +100,20 @@ export default {
     },
   },
   created() {
-    // 获取用户信息
-    UserInfoApi().then((res) => {
-      if (res.code === 0) {
-        let { cartTotal, userInfo } = res.data;
-        this.cartTotal = cartTotal;
-        this.userInfo = userInfo;
-        this.ifLogin = true;
-      }
-    });
+    let token = localStorage.getItem('token')
+    if (token) {
+      // 获取用户信息
+      UserInfoApi().then((res) => {
+        if (res.code === 0) {
+          let { cartTotal, userInfo } = res.data;
+          this.cartTotal = cartTotal;
+          this.userInfo = userInfo;
+          this.ifLogin = true;
+          // 存储我的积分
+          localStorage.setItem("mycoin", userInfo.coin);
+        }
+      });
+    }
     // 调用绑定微信
     this.bindWechatFn();
   },

@@ -1,5 +1,5 @@
 <template>
-  <ul class="products banxin tanxin">
+  <ul class="products banxin">
     <li v-for="item in arr" :key="item.id">
       <div class="products_box">
         <img :src="'http://sc.wolfcode.cn' + item.coverImg" alt="" />
@@ -39,11 +39,18 @@ export default {
 @import "../assets/base.less";
 .products {
   flex-wrap: wrap;
+  display: flex;
+  justify-content: flex-start;
   li {
     width: 285px;
     text-align: center;
+    margin-right: 20px;
     cursor: pointer;
     margin-bottom: 20px;
+    /* 每一行的第4个盒子 4 8 12 16 */
+    &:nth-of-type(4n){
+      margin-right: 0;
+    }
     &:hover {
       .products_box {
         top: -10px;

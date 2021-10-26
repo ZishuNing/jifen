@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import goods from "./goods"
 
 Vue.use(Vuex)
 
@@ -12,7 +13,8 @@ export default new Vuex.Store({
       show: false,
       content: "你好世界",
       icon: "icon-toast_chenggong"
-    }
+    },
+    
   },
   mutations: {
     // 修改登录框的状态
@@ -58,7 +60,7 @@ export default new Vuex.Store({
       let obj = {content: "你好哇",icon: "danger"};
       this.$store.dispatch("toastAsync", obj);
     */
-    toastAsync({commit}, payload){
+    toastAsync({ commit }, payload) {
       commit("openToast", payload);
       setTimeout(() => {
         commit("closeToast");
@@ -66,5 +68,6 @@ export default new Vuex.Store({
     }
   },
   modules: {
+    goods
   }
 })
