@@ -35,6 +35,11 @@ const routes = [
     path: '/free',
     name: 'Free',
     component: () => import(/* webpackChunkName: "free" */ '../views/Free.vue')
+  },
+  {
+    path: '/details/:id',
+    name: 'Details',
+    component: () => import(/* webpackChunkName: "details" */ '../views/Details.vue')
   }
 ]
 
@@ -43,6 +48,13 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
+
+// 解决Vue-Router升级导致的Uncaught(in promise) navigation guard问题
+const originalPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push (location, onResolve, onReject) {
+  if (onResolve || onReject) return originalPush.call(this, location, onResolve, onReject)
+  return originalPush.call(this, location).catch(err => err)
+}
 
 // 导航守卫
 router.beforeEach((to,from,next)=>{

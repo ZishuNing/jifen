@@ -13,6 +13,7 @@
           v-for="(item, index) in paixuArr"
           :key="index"
           :class="{ active: paixuActive == index }"
+          @click="changePaixu(item.min, item.max, index)"
           >{{ item.txt }}</span
         >
       </div>
@@ -22,7 +23,7 @@
           v-for="(item, index) in fenleiArr"
           :key="index"
           :class="{ active: fenleiActive == index }"
-          @click="changeFenlei(item.value)"
+          @click="changeFenlei(item.value, index)"
           >{{ item.txt }}</span
         >
       </div>
@@ -67,14 +68,35 @@ export default {
     }),
   },
   created() {
-      this.GetGoodsFn();
+      // 获取从搜索框过来的keyword
+      if(this.$route.query.keyword){
+          this.changeGoodsObj({keyword: this.$route.query.keyword});
+      }else{
+          this.changeGoodsObj({keyword: ""});
+      }
+      // 获取从首页过来的did
+      if(this.$route.query.did){
+          this.changeGoodsObj({did: this.$route.query.did});
+      }
+      this.getGoodsFn();
+  },
+  watch: {
+      "$route": {
+          handler(newVal, oldVal){
+              // keyword新值与旧值不同时，页面要刷新
+              if(newVal.query.keyword !== oldVal.query.keyword){
+                  this.$router.go(0)
+              }
+          },
+          deep: true
+      }
   },
   methods: {
     ...mapMutations({
       changeGoodsObj: "goods/changeGoodsObj",
     }),
     // 发送请求
-    GetGoodsFn() {
+    getGoodsFn() {
       GoodsDataApi(this.goodsObj).then((res) => {
         if (res.code === 0) {
           this.goodsArr = res.data;
@@ -82,16 +104,20 @@ export default {
       });
     },
     // 点击了分类
-    changeFenlei(value) {
-      this.changeGoodsObj({
-        did: 0,
-        type: value,
-        min: 0,
-        max: 10000,
-        keyword: "",
-      });
+    changeFenlei(value, index) {
+      this.changeGoodsObj({type: value});
+      // 修改当前项
+      this.fenleiActive = index;
       // 做请求
-      this.GetGoodsFn();
+      this.getGoodsFn();
+    },
+    // 点击了排序
+    changePaixu(min, max, index) {
+      this.changeGoodsObj({min, max});
+      // 修改当前项
+      this.paixuActive = index;
+      // 做数据请求
+      this.getGoodsFn();
     },
   },
   components: {

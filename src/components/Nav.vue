@@ -4,14 +4,14 @@
       <img src="../assets/images/indexLogo.png" alt="" />
       <ul class="tanxin">
         <li @click="$router.push('/home')" :class="{'active': $route.path==='/home' || $route.path==='/'}">首页</li>
-        <li @click="$router.push('/goods')" :class="{'active': $route.path==='/goods'}">全部商品</li>
+        <li @click="$router.push('/goods')" :class="{'active': $route.path.indexOf('/goods')!==-1}">全部商品</li>
         <li @click="$router.push('/user')" :class="{'active': $route.path==='/user'}">个人中心</li>
         <li @click="$router.push('/order')" :class="{'active': $route.path==='/order'}">我的订单</li>
         <li @click="$router.push('/free')" :class="{'active': $route.path==='/free'}">专属福利</li>
       </ul>
       <div class="search tanxin">
-        <input type="text" placeholder="搜索全部商品直接回车" />
-        <div class="btn">
+        <input type="text" placeholder="搜索全部商品直接回车" v-model="value" @keyup.13="keyupFn" />
+        <div class="btn" @click="keyupFn">
           <img src="../assets/images/search.png" alt="" />
         </div>
       </div>
@@ -22,8 +22,17 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      // 输入框的值
+      value: ""
+    };
   },
+  methods: {
+    keyupFn(){
+      // 跳转到商品页
+      this.$router.push(`/goods?keyword=${this.value}`)
+    }
+  }
 };
 </script>
  

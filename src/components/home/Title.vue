@@ -5,7 +5,7 @@
         <img :src="src" alt="" />
         <h2>{{title}}</h2>
       </div>
-      <div class="more" v-show="title!=='积分攻略'">
+      <div class="more" v-show="title!=='积分攻略'" @click="goGoodsPage">
         <span>更多</span>
         <img src="../../assets/images/home/Arrow.png" alt="" />
       </div>
@@ -18,7 +18,12 @@ export default {
   data() {
     return {};
   },
-  props: ["src", "title"]
+  props: ["src", "title"],
+  methods: {
+    goGoodsPage(){
+      this.$router.push(`/goods?did=${this.title==='精品推荐'?1:2}`)
+    }
+  }
 };
 </script>
  
@@ -37,6 +42,7 @@ export default {
     }
   }
   .more {
+    cursor: pointer;
     span {
       font-size: 16px;
       margin-right: 6px;

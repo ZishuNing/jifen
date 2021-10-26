@@ -21,7 +21,7 @@
           <input type="number" v-model="phone" placeholder="请输入手机号" />
         </div>
         <div class="verify_box">
-          <!-- <slide-verify
+          <slide-verify
             :l="42"
             :r="20"
             :w="362"
@@ -33,7 +33,7 @@
             class="slide-box"
             ref="slideBlock"
             :slider-text="msg"
-          ></slide-verify> -->
+          ></slide-verify>
         </div>
         <div class="line tanxin">
           <input type="text" v-model="code" placeholder="请输入短信验证码" />
@@ -164,12 +164,12 @@ export default {
         return;
       }
       // 校验滑块是否滑动
-      /* if (this.msg == "再试一次" || this.msg == "向右滑动") {
+      if (this.msg == "再试一次" || this.msg == "向右滑动") {
         // 提示用户滑动滑块
         let obj = { content: "请滑动拼图", icon: "danger" };
         this.$store.dispatch("toastAsync", obj);
         return;
-      } */
+      }
       // 以上如果全部都通过了，就终于可以开始登录了
 
       // 存在uuid，

@@ -2,6 +2,7 @@
   <div id="app">
     <!-- 
       更新一个组件，本质是修改key
+      key是唯一标识符
      -->
     <Header :key="updateKey" @updateKeyFn="updateKeyFn" />
     <Nav />

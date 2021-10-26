@@ -13,9 +13,15 @@ export default {
         }
     },
     mutations: {
-        // 方案一：直接整个goodsObj都修改掉
-        changeGoodsObj(state, payload){
-            state.goodsObj = payload;
+        changeGoodsObj(state, payload) {
+            let arr = Object.keys(payload);
+            // 循环arr，将每一个值放入到旧对象中进行匹配，看看是否有对应的这个属性
+            arr.forEach(item => {
+                if (state.goodsObj.hasOwnProperty(item)) {
+                    // 此时旧对象有新对象包含的属性
+                    state.goodsObj[item] = payload[item]
+                }
+            })
         }
     }
 }
