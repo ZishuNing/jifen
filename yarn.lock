@@ -4961,6 +4961,11 @@ lines-and-columns@^1.1.6:
   resolved "https://registry.nlark.com/lines-and-columns/download/lines-and-columns-1.1.6.tgz#1c00c743b433cd0a4e80758f7b64a57440d9ff00"
   integrity sha1-HADHQ7QzzQpOgHWPe2SldEDZ/wA=
 
+load-more-zhao@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/load-more-zhao/-/load-more-zhao-1.0.0.tgz#64f529e292934883b127b358fa41ff12db54f8a9"
+  integrity sha512-/oLo95b3A5bfYK2wbNq8pBO+mk9R9+UFLX+qHJrp+GblFd2cZ4Nhyt5XeFPqvJFYyq4g/06h9c62rVNOqkQnpw==
+
 loader-runner@^2.3.1, loader-runner@^2.4.0:
   version "2.4.0"
   resolved "https://registry.npm.taobao.org/loader-runner/download/loader-runner-2.4.0.tgz?cache=0&sync_timestamp=1610027880902&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Floader-runner%2Fdownload%2Floader-runner-2.4.0.tgz#ed47066bfe534d7e84c4c7b9998c2a75607d9357"

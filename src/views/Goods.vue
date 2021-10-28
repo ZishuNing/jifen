@@ -28,7 +28,18 @@
         >
       </div>
     </section>
-    <Products :arr="goodsArr" />
+    <!-- 
+      瀑布流效果
+      内容分发(slot插槽)：
+      每一次渲染不同的内容到同一个组件去渲染
+      
+      bigarr代表原数组（大数组）
+      smallarr代表处理过后分发出来的数组（小数组）
+      size代表每次滚动时显示多少项
+     -->
+     <LoadMore :bigarr="goodsArr" :size="8">
+       <Products slot-scope="scope" :arr="scope.samllarr" />
+     </LoadMore>
   </div>
 </template>
  
@@ -68,28 +79,28 @@ export default {
     }),
   },
   created() {
-      // 获取从搜索框过来的keyword
-      if(this.$route.query.keyword){
-          this.changeGoodsObj({keyword: this.$route.query.keyword});
-      }else{
-          this.changeGoodsObj({keyword: ""});
-      }
-      // 获取从首页过来的did
-      if(this.$route.query.did){
-          this.changeGoodsObj({did: this.$route.query.did});
-      }
-      this.getGoodsFn();
+    // 获取从搜索框过来的keyword
+    if (this.$route.query.keyword) {
+      this.changeGoodsObj({ keyword: this.$route.query.keyword });
+    } else {
+      this.changeGoodsObj({ keyword: "" });
+    }
+    // 获取从首页过来的did
+    if (this.$route.query.did) {
+      this.changeGoodsObj({ did: this.$route.query.did });
+    }
+    this.getGoodsFn();
   },
   watch: {
-      "$route": {
-          handler(newVal, oldVal){
-              // keyword新值与旧值不同时，页面要刷新
-              if(newVal.query.keyword !== oldVal.query.keyword){
-                  this.$router.go(0)
-              }
-          },
-          deep: true
-      }
+    $route: {
+      handler(newVal, oldVal) {
+        // keyword新值与旧值不同时，页面要刷新
+        if (newVal.query.keyword !== oldVal.query.keyword) {
+          this.$router.go(0);
+        }
+      },
+      deep: true,
+    },
   },
   methods: {
     ...mapMutations({
@@ -97,6 +108,7 @@ export default {
     }),
     // 发送请求
     getGoodsFn() {
+      this.goodsArr = [];
       GoodsDataApi(this.goodsObj).then((res) => {
         if (res.code === 0) {
           this.goodsArr = res.data;
@@ -105,7 +117,7 @@ export default {
     },
     // 点击了分类
     changeFenlei(value, index) {
-      this.changeGoodsObj({type: value});
+      this.changeGoodsObj({ type: value });
       // 修改当前项
       this.fenleiActive = index;
       // 做请求
@@ -113,7 +125,7 @@ export default {
     },
     // 点击了排序
     changePaixu(min, max, index) {
-      this.changeGoodsObj({min, max});
+      this.changeGoodsObj({ min, max });
       // 修改当前项
       this.paixuActive = index;
       // 做数据请求
