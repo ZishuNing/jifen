@@ -30,3 +30,14 @@ export const UnBindWechatApi = () => request.put("/wechatUsers/unbindingWeChat")
 // 商品页数据请求
 export const GoodsDataApi = (params) => request.get("/products", {params})
 
+// 商品详情  `/products/${params.id}`
+export const GoodsDetailsApi = (params) => request.get(`/products/${params.id}`)
+
+// 加入到购物车
+export const AddToCartApi = (params) => request.post("/shop/carts/add", qs.stringify(params))
+
+// 查看购物车
+export const CartDataApi = () => request.get("/shop/carts")
+
+// 购物车删除商品
+export const CartDelApi = (params) => request.delete(`/shop/carts?productIds=${params.id}`)

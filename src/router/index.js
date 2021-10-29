@@ -23,8 +23,21 @@ const routes = [
   },
   {
     path: '/user',
+    redirect: '/user/center',
     name: 'User',
-    component: () => import(/* webpackChunkName: "user" */ '../views/User.vue')
+    component: () => import(/* webpackChunkName: "user" */ '../views/User.vue'),
+    children: [
+      {
+        path: 'center',
+        name: 'Center',
+        component: () => import(/* webpackChunkName: "center" */ '../components/user/Center.vue')
+      },
+      {
+        path: 'cart',
+        name: 'Cart',
+        component: () => import(/* webpackChunkName: "cart" */ '../components/user/Cart.vue')
+      }
+    ]
   },
   {
     path: '/order',
@@ -58,7 +71,8 @@ VueRouter.prototype.push = function push (location, onResolve, onReject) {
 
 // 导航守卫
 router.beforeEach((to,from,next)=>{
-  if(to.path==='/user'){
+  // if(to.path==='/user'){
+  if(to.path.indexOf('/user')!==-1){
     // 必须要有token
     let token = localStorage.getItem("x-auth-token");
     if(token){

@@ -7,4 +7,9 @@
   display: flex;
   justify-content: space-between;
 }
+.ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
 /*# sourceMappingURL=./base.css.map */

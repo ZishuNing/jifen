@@ -16,14 +16,13 @@
           <b>{{ cartTotal }}</b>
         </li>
         <li class="header_btn login_btn" v-else @click="goLogin">登录</li>
-        <li class="header_btn login_btn" @click="jiebangFn">解绑微信</li>
       </ul>
     </div>
   </header>
 </template>
  
 <script>
-import { UserInfoApi, WeixinLoginApi, UnBindWechatApi } from "@/request/api";
+import { UserInfoApi, WeixinLoginApi } from "@/request/api";
 export default {
   data() {
     return {
@@ -82,25 +81,21 @@ export default {
         });
       }
     },
-    // 解绑微信
-    jiebangFn() {
-      UnBindWechatApi().then((res) => {
-        console.log(res);
-      });
-    },
+    
   },
   watch: {
-    "$route.query.code": {
+    "$route": {
       handler(newVal, oldVal) {
-        if (newVal !== oldVal) {
+        if (newVal.query.code !== oldVal.query.code) {
           // 调用绑定微信
           this.bindWechatFn();
         }
       },
-    },
+      deep: true
+    }
   },
   created() {
-    let token = localStorage.getItem('token')
+    let token = localStorage.getItem('x-auth-token')
     if (token) {
       // 获取用户信息
       UserInfoApi().then((res) => {
@@ -109,8 +104,10 @@ export default {
           this.cartTotal = cartTotal;
           this.userInfo = userInfo;
           this.ifLogin = true;
-          // 存储我的积分
+          // 存储我的积分、头像和昵称
           localStorage.setItem("mycoin", userInfo.coin);
+          localStorage.setItem("avatar", userInfo.headImg);
+          localStorage.setItem("username", userInfo.nickName);
         }
       });
     }

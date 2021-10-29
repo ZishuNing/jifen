@@ -19,7 +19,7 @@ export default {
     padding: 10px 20px;
     background: #fff;
     align-items: center;
-    position: absolute;
+    position: fixed;
     left: 50%;
     transform: translateX(-50%);
     top: 0;

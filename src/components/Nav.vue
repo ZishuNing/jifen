@@ -5,7 +5,7 @@
       <ul class="tanxin">
         <li @click="$router.push('/home')" :class="{'active': $route.path==='/home' || $route.path==='/'}">首页</li>
         <li @click="$router.push('/goods')" :class="{'active': $route.path.indexOf('/goods')!==-1}">全部商品</li>
-        <li @click="$router.push('/user')" :class="{'active': $route.path==='/user'}">个人中心</li>
+        <li @click="$router.push('/user')" :class="{'active': $route.path.indexOf('/user')!==-1}">个人中心</li>
         <li @click="$router.push('/order')" :class="{'active': $route.path==='/order'}">我的订单</li>
         <li @click="$router.push('/free')" :class="{'active': $route.path==='/free'}">专属福利</li>
       </ul>

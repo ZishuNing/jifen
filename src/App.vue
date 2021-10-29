@@ -4,9 +4,9 @@
       更新一个组件，本质是修改key
       key是唯一标识符
      -->
-    <Header :key="updateKey" @updateKeyFn="updateKeyFn" />
+    <Header :key1="updateKey" :key="updateKey" @updateKeyFn="updateKeyFn" />
     <Nav />
-    <router-view />
+    <router-view @updateKeyFn="updateKeyFn" />
     <Footer />
     <Login @updateKeyFn="updateKeyFn" />
     <transition name="fade">
