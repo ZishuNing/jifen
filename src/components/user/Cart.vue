@@ -3,7 +3,16 @@
     <table>
       <thead>
         <tr>
-          <th width="50"><i @click="checkAllFn" :class="checkAll ? 'iconfont icon-yduifuxuankuangxuanzhong' : 'iconfont icon-yduifuxuankuang'"></i></th>
+          <th width="50">
+            <i
+              @click="checkAllFn"
+              :class="
+                checkAll
+                  ? 'iconfont icon-yduifuxuankuangxuanzhong'
+                  : 'iconfont icon-yduifuxuankuang'
+              "
+            ></i>
+          </th>
           <th width="300">礼品信息</th>
           <th>兑换分数</th>
           <th>数量</th>
@@ -12,40 +21,54 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="item,index in goodsArr" :key="item.id">
+        <tr v-for="(item, index) in goodsArr" :key="item.id">
           <!-- 选中icon-yduifuxuankuangxuanzhong   不选中icon-yduifuxuankuang -->
           <td align="center">
-            <i @click="oneSelect(index)" :class="item.ischecked ? 'iconfont icon-yduifuxuankuangxuanzhong' : 'iconfont icon-yduifuxuankuang'"></i>
+            <i
+              @click="oneSelect(index)"
+              :class="
+                item.ischecked
+                  ? 'iconfont icon-yduifuxuankuangxuanzhong'
+                  : 'iconfont icon-yduifuxuankuang'
+              "
+            ></i>
           </td>
           <td>
-            <img class="good_img" width="84" v-lazy="'https://sc.wolfcode.cn'+item.coverImg" alt="">
+            <img
+              class="good_img"
+              width="84"
+              v-lazy="'https://sc.wolfcode.cn' + item.coverImg"
+              alt=""
+            />
             <section>
-              <div class="title ellipse">{{item.title}}</div>
-              <div class="desc ellipse">{{item.versionDescription}}</div>
+              <div class="title ellipse">{{ item.title }}</div>
+              <div class="desc ellipse">{{ item.versionDescription }}</div>
             </section>
           </td>
-          <td align="center">{{item.coin}}鸡腿</td>
+          <td align="center">{{ item.coin }}鸡腿</td>
           <td align="center">
             <div class="step tanxin">
               <div class="btn" @click="cutFn(index)">-</div>
-              <div>{{item.total}}</div>
+              <div>{{ item.total }}</div>
               <div class="btn" @click="addFn(index)">+</div>
             </div>
           </td>
-          <td align="center">{{item.totalCost}}鸡腿</td>
+          <td align="center">{{ item.totalCost }}鸡腿</td>
           <td align="center">
             <div class="del" @click="delFn(index, item.id)">删除</div>
           </td>
         </tr>
       </tbody>
     </table>
-    <h3>总计：<span>{{allMoney}}鸡腿</span></h3>
-    <div class="submit">提交</div>
+    <h3>
+      总计：<span>{{ allMoney }}鸡腿</span>
+    </h3>
+    <div class="submit" @click="submitFn">提交</div>
   </div>
 </template>
  
 <script>
-import { CartDataApi, CartDelApi } from "@/request/api"
+import { CartDataApi, CartDelApi } from "@/request/api";
 export default {
   data() {
     return {
@@ -53,16 +76,16 @@ export default {
       // 全选的状态
       checkAll: false,
       // 总价
-      allMoney: 0
-    }
+      allMoney: 0,
+    };
   },
   created() {
-    CartDataApi().then(res => {
+    CartDataApi().then((res) => {
       this.goodsArr = res.data;
-      this.goodsArr.forEach(item => {
-        item.ischecked = false;   // 给每一项都添加一个ischekced属性，用来让复选框未勾选
-      })
-    })
+      this.goodsArr.forEach((item) => {
+        item.ischecked = false; // 给每一项都添加一个ischekced属性，用来让复选框未勾选
+      });
+    });
   },
   methods: {
     // 单项点击
@@ -71,16 +94,16 @@ export default {
       // 数据更新了，视图没更新  数据：复杂数据类型
       //   this.$set()
       let sum = 0;
-      this.goodsArr.map(item => {
+      this.goodsArr.map((item) => {
         if (item.ischecked) {
           sum++;
         }
-      })
+      });
 
       // 修改全选的状态
       this.checkAll = sum >= this.goodsArr.length;
 
-      this.countMoney();   // 计算总价
+      this.countMoney(); // 计算总价
 
       this.$forceUpdate();
     },
@@ -88,26 +111,27 @@ export default {
     checkAllFn() {
       this.checkAll = !this.checkAll;
 
-      this.goodsArr.map(item => {
+      this.goodsArr.map((item) => {
         item.ischecked = this.checkAll;
-      })
+      });
 
-      this.countMoney();   // 计算总价
+      this.countMoney(); // 计算总价
     },
     // 计算总价
     countMoney() {
-      this.allMoney = 0;  // 归零
-      this.goodsArr.map(item => {
+      this.allMoney = 0; // 归零
+      this.goodsArr.map((item) => {
         if (item.ischecked) {
-          this.allMoney += item.totalCost;  // 计算总价
+          this.allMoney += item.totalCost; // 计算总价
         }
-      })
+      });
     },
     // 步进器+
     addFn(index) {
       this.goodsArr[index].total++;
-      this.goodsArr[index].totalCost = this.goodsArr[index].coin * this.goodsArr[index].total;
-      this.countMoney();   // 计算总价
+      this.goodsArr[index].totalCost =
+        this.goodsArr[index].coin * this.goodsArr[index].total;
+      this.countMoney(); // 计算总价
     },
     // 步进器-
     cutFn(index) {
@@ -115,24 +139,29 @@ export default {
         return;
       }
       this.goodsArr[index].total--;
-      this.countMoney();   // 计算总价
+      this.countMoney(); // 计算总价
     },
     // 删除
     delFn(index, id) {
       this.goodsArr.splice(index, 1);
-      this.countMoney();   // 计算总价
+      this.countMoney(); // 计算总价
 
       CartDelApi({
-        id
-      }).then(res => {
+        id,
+      }).then((res) => {
         if (res.code === 0) {
           let obj = { content: "删除成功", icon: "success" };
           this.$store.dispatch("toastAsync", obj);
         }
-      })
-    }
-  }
-}
+      });
+    },
+    // 提交按钮
+    submitFn() {
+      let obj = { content: "该功能暂未开放", icon: "info" };
+      this.$store.dispatch("toastAsync", obj);
+    },
+  },
+};
 </script>
  
 <style lang = "less" scoped>

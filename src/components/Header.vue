@@ -7,9 +7,9 @@
           <img width="26" class="avatar" v-lazy="userInfo.headImg" alt="" />
           用户名：{{ userInfo.nickName }}
         </li>
-        <li>我的积分：{{ userInfo.coin }}</li>
-        <li>获取积分</li>
-        <li>叩丁狼官网</li>
+        <li @click="$router.push('/user/center')">我的积分：{{ userInfo.coin }}</li>
+        <li @click="getScore">获取积分</li>
+        <li @click="goWolfcode">叩丁狼官网</li>
         <li class="header_btn cart_btn" v-if="ifLogin" @click="$router.push('/user/cart')">
           <img src="../assets/images/Shopping.png" width="20" alt="" />
           <span>购物车</span>
@@ -37,6 +37,9 @@ export default {
     };
   },
   methods: {
+    goWolfcode(){
+      window.open("http://wolfcode.cn");
+    },
     goLogin() {
       // 触发mutations去打开login
       this.$store.commit("changeLoginShow", true);
@@ -86,7 +89,10 @@ export default {
         });
       }
     },
-    
+    getScore(){
+      let obj = { content: "该功能暂未开放", icon: "info" };
+      this.$store.dispatch("toastAsync", obj);
+    }
   },
   watch: {
     "$route": {
@@ -139,13 +145,13 @@ header {
       align-items: center;
       li {
         margin-right: 20px;
+        cursor: pointer;
         &.avatar_li {
           height: 26px;
-          cursor: pointer;
           display: flex;
           align-items: center;
           .avatar {
-            border-radius: 50%;
+            border-radius: 26px;
             margin-right: 5px;
           }
         }

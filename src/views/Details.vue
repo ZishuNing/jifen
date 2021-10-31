@@ -5,10 +5,10 @@
       <main class="tanxin">
         <div class="main_l">
           <div class="bigImg">
-            <img width="100%" v-lazy="'https://sc.wolfcode.cn'+productInfo.coverImg" alt="" />
+            <img width="100%" v-lazy="bigImg" alt="" />
           </div>
           <ul class="smallImg tanxin">
-            <li :class="productActive===index ? 'active' : ''" v-for="item,index in productInfo.imgAltas" :key="index">
+            <li :class="productActive===index ? 'active' : ''" v-for="item,index in productInfo.imgAltas" :key="index" @mouseover="bigImg='https://sc.wolfcode.cn'+item.src">
               <img width="100%" v-lazy="'https://sc.wolfcode.cn'+item.src" alt="" />
             </li>
           </ul>
@@ -103,7 +103,8 @@ export default {
       // 商品小图切换当前项
       productActive: 0,
       // 步进器的值
-      stepNum: 1
+      stepNum: 1,
+      bigImg: ""
     };
   },
   components: {
@@ -164,6 +165,7 @@ export default {
         this.themYouCanBuy = themYouCanBuy;
         productInfo.description = productInfo.description.replace(/<img src="/g, '<img src="http://sc.wolfcode.cn/')
         this.productInfo = productInfo;
+        this.bigImg = 'https://sc.wolfcode.cn'+productInfo.coverImg;
       }
     })
   }
@@ -198,6 +200,7 @@ export default {
           li {
             width: 100px;
             height: 100px;
+            cursor: pointer;
             opacity: 0.7;
             &.active {
               opacity: 1;

@@ -5,7 +5,8 @@
       <aside>
         <img class="avatar" v-lazy="avatar" alt="">
         <div class="userInfo">
-          <span>{{username}}</span>
+          <span>{{username}}：</span>
+          <span>{{mycoin}} 分</span>
         </div>
         <div class="title"><img width="20" src="../assets/images/person/transaction.png" alt=""> 交易管理</div>
         <ul>
@@ -40,7 +41,8 @@ export default {
       // 头像
       avatar: localStorage.getItem("avatar"), 
       // 用户昵称
-      username: localStorage.getItem("username")
+      username: localStorage.getItem("username"),
+      mycoin: localStorage.getItem('mycoin')
     };
   },
   watch: {

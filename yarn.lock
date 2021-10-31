@@ -4961,10 +4961,10 @@ lines-and-columns@^1.1.6:
   resolved "https://registry.nlark.com/lines-and-columns/download/lines-and-columns-1.1.6.tgz#1c00c743b433cd0a4e80758f7b64a57440d9ff00"
   integrity sha1-HADHQ7QzzQpOgHWPe2SldEDZ/wA=
 
-load-more-mczhao@^1.0.7:
-  version "1.0.7"
-  resolved "https://registry.yarnpkg.com/load-more-mczhao/-/load-more-mczhao-1.0.7.tgz#f20dd8d49f41225fa5d55033b5d5339fb791eaf7"
-  integrity sha512-84zaygpWRUzM9Cx7EnfoLwYfF6c8YmxUKTe11P/H886pyGFBKkzHcCxv8iX9IDZ9cu+o3tLTpZbI6xDA8Cvr0g==
+load-more-mczhao@^1.0.12:
+  version "1.0.12"
+  resolved "https://registry.yarnpkg.com/load-more-mczhao/-/load-more-mczhao-1.0.12.tgz#dbec0bd48510d5a2656c41f17e826392f15da6c1"
+  integrity sha512-DjHhj+/6sXWi3Y9qx2wWAdsFVsxTdyrwQO+gCZEvWN6bnSSR8xb7oR1rehhaLdmwgq3ssqKjPt/m/jp2JPqbUQ==
 
 loader-runner@^2.3.1, loader-runner@^2.4.0:
   version "2.4.0"

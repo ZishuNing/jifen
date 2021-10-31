@@ -9,7 +9,7 @@
   "dependencies": {
     "axios": "^0.23.0",
     "core-js": "^3.6.5",
-    "load-more-mczhao": "^1.0.7",
+    "load-more-mczhao": "^1.0.12",
     "qs": "^6.10.1",
     "register-service-worker": "^1.7.1",
     "reset-css": "^5.0.1",

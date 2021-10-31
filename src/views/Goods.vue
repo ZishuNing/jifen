@@ -37,9 +37,9 @@
       smallarr代表处理过后分发出来的数组（小数组）
       size代表每次滚动时显示多少项
      -->
-     <LoadMore :bigarr="goodsArr" :size="8">
-       <Products slot-scope="scope" :arr="scope.smallarr" />
-     </LoadMore>
+    <LoadMore :bigarr="goodsArr" :size="8">
+      <Products slot-scope="scope" :arr="scope.smallarr" />
+    </LoadMore>
   </div>
 </template>
  
@@ -53,13 +53,13 @@ export default {
   data() {
     return {
       // 面包屑数组
-      breadArr: ['首页', '全部商品'],
+      breadArr: ["首页", "全部商品"],
       paixuActive: 0,
       fenleiActive: 0,
       // 排序的数组
       paixuArr: [
         { txt: "全部", min: 0, max: 10000 },
-        { txt: "我能兑换的", min: 0, max: localStorage.getItem("mycoin") || 0 },
+        { txt: "我能兑换的", min: 0, max: localStorage.getItem("mycoin") },
         { txt: "0-500分", min: 0, max: 500 },
         { txt: "500-1000分", min: 500, max: 1000 },
         { txt: "1000-1500分", min: 1000, max: 1500 },
@@ -127,6 +127,17 @@ export default {
     },
     // 点击了排序
     changePaixu(min, max, index) {
+      // 如果点击的是“我能兑换的”
+      if (index === 1) {
+        // 判断是否登录
+        let token = localStorage.getItem("x-auth-token");
+        if (!token) {
+          // 提示请先登录
+          let obj = { content: "请先登录", icon: "danger" };
+          this.$store.dispatch("toastAsync", obj);
+          return;
+        }
+      }
       this.changeGoodsObj({ min, max });
       // 修改当前项
       this.paixuActive = index;
