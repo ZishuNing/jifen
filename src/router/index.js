@@ -29,13 +29,43 @@ const routes = [
     children: [
       {
         path: 'center',
-        name: 'Center',
+        meta: "帐号管理",
         component: () => import(/* webpackChunkName: "center" */ '../components/user/Center.vue')
       },
       {
+        path: 'order',
+        meta: "我的订单",
+        component: () => import(/* webpackChunkName: "order" */ '../components/user/Order.vue')
+      },
+      {
         path: 'cart',
-        name: 'Cart',
+        meta: "购物车",
         component: () => import(/* webpackChunkName: "cart" */ '../components/user/Cart.vue')
+      },
+      {
+        path: 'message',
+        meta: "消息通知",
+        component: () => import(/* webpackChunkName: "message" */ '../components/user/Message.vue')
+      },
+      {
+        path: 'detail',
+        meta: "积分明细",
+        component: () => import(/* webpackChunkName: "detail" */ '../components/user/Detail.vue')
+      },
+      {
+        path: 'attack',
+        meta: "积分攻略",
+        component: () => import(/* webpackChunkName: "attack" */ '../components/user/Attack.vue')
+      },
+      {
+        path: 'address',
+        meta: "地址管理",
+        component: () => import(/* webpackChunkName: "address" */ '../components/user/Address.vue')
+      },
+      {
+        path: 'safe',
+        meta: "账号安全",
+        component: () => import(/* webpackChunkName: "safe" */ '../components/user/Safe.vue')
       }
     ]
   },
@@ -57,7 +87,7 @@ const routes = [
 ]
 
 const router = new VueRouter({
-  // mode: 'history',   // 默认mode就是hash，所以可以不写
+  mode: 'history',   // 默认mode就是hash
   base: process.env.BASE_URL,
   routes
 })

@@ -4961,10 +4961,10 @@ lines-and-columns@^1.1.6:
   resolved "https://registry.nlark.com/lines-and-columns/download/lines-and-columns-1.1.6.tgz#1c00c743b433cd0a4e80758f7b64a57440d9ff00"
   integrity sha1-HADHQ7QzzQpOgHWPe2SldEDZ/wA=
 
-load-more-zhao@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/load-more-zhao/-/load-more-zhao-1.0.1.tgz#9de8cecf1e15468c16031d5f4171be9028564125"
-  integrity sha512-I/8xkZTfeoLH49EVyPdkY6/tX6lzjo6d4EO6UvfJnKqMun2CSHFvVHB6zZJle3IG7M5deDuk30vd0ytPhzG3+g==
+load-more-mczhao@^1.0.7:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/load-more-mczhao/-/load-more-mczhao-1.0.7.tgz#f20dd8d49f41225fa5d55033b5d5339fb791eaf7"
+  integrity sha512-84zaygpWRUzM9Cx7EnfoLwYfF6c8YmxUKTe11P/H886pyGFBKkzHcCxv8iX9IDZ9cu+o3tLTpZbI6xDA8Cvr0g==
 
 loader-runner@^2.3.1, loader-runner@^2.4.0:
   version "2.4.0"
@@ -7881,8 +7881,8 @@ vue-loader@^15.9.2:
 
 vue-monoplasty-slide-verify@^1.1.3:
   version "1.1.3"
-  resolved "https://registry.npm.taobao.org/vue-monoplasty-slide-verify/download/vue-monoplasty-slide-verify-1.1.3.tgz#70a3a569e32ec0ed95b611d6754bf523c2499a3c"
-  integrity sha1-cKOlaeMuwO2VthHWdUv1I8JJmjw=
+  resolved "https://registry.yarnpkg.com/vue-monoplasty-slide-verify/-/vue-monoplasty-slide-verify-1.1.3.tgz#70a3a569e32ec0ed95b611d6754bf523c2499a3c"
+  integrity sha512-lQ95n2pf+sZG0GDRQqTImXTl/QHmNl1oid6MuqZbM2DcfrdY6P38kVpKLSvPUTAa3RVtl4uzZMzogjAfw2sfEQ==
   dependencies:
     vue "^2.5.11"
 

@@ -9,17 +9,17 @@
         </div>
         <div class="title"><img width="20" src="../assets/images/person/transaction.png" alt=""> 交易管理</div>
         <ul>
-          <li @click="$router.push('/user/center')" :class="{'active': $route.path.includes('center')}">个人中心</li>
-          <li @click="asideActive=1" :class="{'active': asideActive==1}">我的订单</li>
-          <li @click="$router.push('/user/cart')" :class="{'active': $route.path.includes('cart')}">购物车</li>
-          <li @click="asideActive=3" :class="{'active': asideActive==3}">消息通知</li>
-          <li @click="asideActive=4" :class="{'active': asideActive==4}">积分明细</li>
-          <li @click="asideActive=5" :class="{'active': asideActive==5}">积分攻略</li>
+          <li @click="$router.push('/user/center')" :class="{'active': $route.path.includes('/center')}">帐号管理</li>
+          <li @click="$router.push('/user/order')" :class="{'active': $route.path.includes('/order')}">我的订单</li>
+          <li @click="$router.push('/user/cart')" :class="{'active': $route.path.includes('/cart')}">购物车</li>
+          <li @click="$router.push('/user/message')" :class="{'active': $route.path.includes('/message')}">消息通知</li>
+          <li @click="$router.push('/user/detail')" :class="{'active': $route.path.includes('/detail')}">积分明细</li>
+          <li @click="$router.push('/user/attack')" :class="{'active': $route.path.includes('/attack')}">积分攻略</li>
         </ul>
         <div class="title"><img width="20" src="../assets/images/person/information.png" alt=""> 个人信息管理</div>
         <ul>
-          <li @click="asideActive=6" :class="{'active': asideActive==6}">地址管理</li>
-          <li @click="asideActive=7" :class="{'active': asideActive==7}">账号安全</li>
+          <li @click="$router.push('/user/address')" :class="{'active': $route.path.includes('/address')}">地址管理</li>
+          <li @click="$router.push('/user/safe')" :class="{'active': $route.path.includes('/safe')}">账号安全</li>
         </ul>
       </aside>
       <article>
@@ -36,13 +36,19 @@ export default {
   data() {
     return {
       // 面包屑数组
-      breadArr: ['首页', '个人中心'],
-      asideActive: -1,
+      breadArr: ['首页', '个人中心', '帐号管理'],
       // 头像
       avatar: localStorage.getItem("avatar"), 
       // 用户昵称
       username: localStorage.getItem("username")
     };
+  },
+  watch: {
+    "$route.meta": {
+      handler(newVal){
+        this.$set(this.breadArr, this.breadArr.length-1, newVal)
+      }
+    }
   },
   components: {
     Breadcrumb

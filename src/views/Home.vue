@@ -5,13 +5,13 @@
         <img src="../assets/images/home/banner.png" width="100%" alt="" />
       </div>
     </div>
-    <Title v-lazy="Recommend" title="精品推荐" />
+    <Title :src="Recommend" title="精品推荐" />
     <Products :arr="records" />
-    <Title v-lazy="hot" title="热门兑换" />
+    <Title :src="hot" title="热门兑换" />
     <img src="../assets/images/home/ad.png" class="ad banxin" alt="" />
     <Products :arr="hot" />
     <div class="jifen">
-      <Title v-lazy="integral" title="积分攻略" />
+      <Title :src="integral" title="积分攻略" />
       <ul class="tanxin banxin">
         <li>
           <h4>签到得鸡腿</h4>
@@ -67,8 +67,7 @@ export default {
   components: {
     Title,
     Products,
-  },
-  methods: {},
+  }
 };
 </script>
 <style lang="less" scoped>

@@ -38,7 +38,7 @@
       size代表每次滚动时显示多少项
      -->
      <LoadMore :bigarr="goodsArr" :size="8">
-       <Products slot-scope="scope" :arr="scope.samllarr" />
+       <Products slot-scope="scope" :arr="scope.smallarr" />
      </LoadMore>
   </div>
 </template>

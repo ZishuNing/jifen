@@ -1,7 +1,7 @@
 // vue中修改webpack的配置文件
 
 module.exports = {
-    publicPath: "./",
+    publicPath: "/store-pc",
     devServer: {
         proxy: {
             '/api': {

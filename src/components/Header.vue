@@ -58,6 +58,9 @@ export default {
             this.$emit("updateKeyFn");
             // 相当于在删除地址栏的code
             this.$router.push(this.$route.path);
+            setTimeout(()=>{
+              this.$router.go(0);
+            }, 200)
           } else if (res.code === 400) {
             // 请重新扫描
             let obj = { content: "请重新扫描二维码登录", icon: "danger" };
@@ -77,6 +80,8 @@ export default {
             sessionStorage.setItem("uuid", res.uuid);
           } else {
             // 直接报错
+            let obj = { content: res.message, icon: "success" };
+            this.$store.dispatch("toastAsync", obj);
           }
         });
       }

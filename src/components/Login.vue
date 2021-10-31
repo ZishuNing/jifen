@@ -9,12 +9,8 @@
         alt=""
       />
       <section>
-        <span :class="{ active: showPhone }" @click="showPhone = true"
-          >手机号码登录</span
-        >
-        <span :class="{ active: !showPhone }" @click="wechatLoginFn"
-          >微信扫码登录</span
-        >
+        <span :class="{ active: showPhone }" @click="showPhone = true">手机号码登录</span>
+        <span :class="{ active: !showPhone }" @click="wechatLoginFn">微信扫码登录</span>
       </section>
       <div class="phone_login" v-show="showPhone">
         <div class="line tanxin">
