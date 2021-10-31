@@ -1,6 +1,6 @@
 <template>
   <div class="goods banxin">
-    <Breadcrumb />
+    <Breadcrumb :breadArr="breadArr" />
     <img
       style="display: block"
       src="../assets/images/products/banner.png"
@@ -52,6 +52,8 @@ import { mapState, mapMutations } from "vuex";
 export default {
   data() {
     return {
+      // 面包屑数组
+      breadArr: ['首页', '全部商品'],
       paixuActive: 0,
       fenleiActive: 0,
       // 排序的数组

@@ -5,13 +5,13 @@
         <img src="../assets/images/home/banner.png" width="100%" alt="" />
       </div>
     </div>
-    <Title :src="Recommend" title="精品推荐" />
+    <Title v-lazy="Recommend" title="精品推荐" />
     <Products :arr="records" />
-    <Title :src="hot" title="热门兑换" />
+    <Title v-lazy="hot" title="热门兑换" />
     <img src="../assets/images/home/ad.png" class="ad banxin" alt="" />
     <Products :arr="hot" />
     <div class="jifen">
-      <Title :src="integral" title="积分攻略" />
+      <Title v-lazy="integral" title="积分攻略" />
       <ul class="tanxin banxin">
         <li>
           <h4>签到得鸡腿</h4>

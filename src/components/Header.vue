@@ -3,14 +3,14 @@
     <div class="banxin tanxin header_in">
       <section>欢迎来到叩丁狼积分商城</section>
       <ul>
-        <li class="avatar_li">
-          <img width="26" class="avatar" :src="userInfo.headImg" alt="" />
+        <li class="avatar_li" @click="$router.push('/user/center')">
+          <img width="26" class="avatar" v-lazy="userInfo.headImg" alt="" />
           用户名：{{ userInfo.nickName }}
         </li>
         <li>我的积分：{{ userInfo.coin }}</li>
         <li>获取积分</li>
         <li>叩丁狼官网</li>
-        <li class="header_btn cart_btn" v-if="ifLogin">
+        <li class="header_btn cart_btn" v-if="ifLogin" @click="$router.push('/user/cart')">
           <img src="../assets/images/Shopping.png" width="20" alt="" />
           <span>购物车</span>
           <b>{{ cartTotal }}</b>
@@ -136,6 +136,7 @@ header {
         margin-right: 20px;
         &.avatar_li {
           height: 26px;
+          cursor: pointer;
           display: flex;
           align-items: center;
           .avatar {

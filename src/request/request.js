@@ -3,6 +3,7 @@ import axios from 'axios'
 
 // 创建一个单例
 const instance = axios.create({
+    // baseURL: "/api",
     baseURL: "http://kumanxuan1.f3322.net:8881/cms",
     timeout: 5000
 })

@@ -44,6 +44,13 @@ export default {
 </script>
 
 <style lang="less">
+img[lazy="loading"] {
+  display: block;
+  width: 30% !important;
+  height: 30% !important;
+  margin: 0 auto;
+}
+
 body {
   font-size: 18px;
   font-family: SourceHanSansSC;

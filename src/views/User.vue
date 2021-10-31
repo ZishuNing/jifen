@@ -1,17 +1,17 @@
 <template>
   <div class="banxin">
-    <Breadcrumb />
+    <Breadcrumb :breadArr="breadArr" />
     <main class="tanxin">
       <aside>
-        <img class="avatar" :src="avatar" alt="">
+        <img class="avatar" v-lazy="avatar" alt="">
         <div class="userInfo">
           <span>{{username}}</span>
         </div>
         <div class="title"><img width="20" src="../assets/images/person/transaction.png" alt=""> 交易管理</div>
         <ul>
-          <li @click="asideActive=0" :class="{'active': asideActive==0}">个人中心</li>
+          <li @click="$router.push('/user/center')" :class="{'active': $route.path.includes('center')}">个人中心</li>
           <li @click="asideActive=1" :class="{'active': asideActive==1}">我的订单</li>
-          <li @click="asideActive=2" :class="{'active': asideActive==2}">购物车</li>
+          <li @click="$router.push('/user/cart')" :class="{'active': $route.path.includes('cart')}">购物车</li>
           <li @click="asideActive=3" :class="{'active': asideActive==3}">消息通知</li>
           <li @click="asideActive=4" :class="{'active': asideActive==4}">积分明细</li>
           <li @click="asideActive=5" :class="{'active': asideActive==5}">积分攻略</li>
@@ -35,7 +35,9 @@ import Breadcrumb from "@/components/Breadcrumb.vue"
 export default {
   data() {
     return {
-      asideActive: 2,
+      // 面包屑数组
+      breadArr: ['首页', '个人中心'],
+      asideActive: -1,
       // 头像
       avatar: localStorage.getItem("avatar"), 
       // 用户昵称

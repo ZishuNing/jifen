@@ -57,7 +57,7 @@ const routes = [
 ]
 
 const router = new VueRouter({
-  mode: 'history',
+  // mode: 'history',   // 默认mode就是hash，所以可以不写
   base: process.env.BASE_URL,
   routes
 })

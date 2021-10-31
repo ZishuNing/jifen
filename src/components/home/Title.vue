@@ -2,7 +2,7 @@
   <div class="jingpin banxin">
     <div class="title tanxin">
       <div class="title_l">
-        <img :src="src" alt="" />
+        <img v-lazy="src" alt="" />
         <h2>{{title}}</h2>
       </div>
       <div class="more" v-show="title!=='积分攻略'" @click="goGoodsPage">

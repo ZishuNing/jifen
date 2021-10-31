@@ -1,5 +1,7 @@
 <template>
-  <div>专属福利</div>
+  <div class="banxin">
+    <img width="100%" src="../assets/images/404.jpg" alt="">
+  </div>
 </template>
  
 <script>
@@ -11,4 +13,5 @@ export default {
 </script>
  
 <style lang = "less" scoped>
+@import "../assets/base.less";
 </style>

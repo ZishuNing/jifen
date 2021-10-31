@@ -2,7 +2,7 @@
   <ul class="products banxin">
     <li v-for="item in arr" :key="item.id" @click="$router.push(`/details/${item.id}`)">
       <div class="products_box">
-        <img :src="'http://sc.wolfcode.cn' + item.coverImg" alt="" />
+        <img v-lazy="'http://sc.wolfcode.cn' + item.coverImg" alt="" />
         <h3>{{ item.name }}</h3>
         <section>
           <span>{{ item.coin }}</span>

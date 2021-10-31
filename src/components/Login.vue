@@ -69,7 +69,7 @@ export default {
       // 验证码
       code: "",
       // 倒计时时间
-      count: 5,
+      count: 60,
       // 获取验证码的状态,true代表要显示“获取验证码”，false代表要显示倒计时
       codeStatus: true,
     };
@@ -118,7 +118,7 @@ export default {
             this.count--;
             if (this.count === 0) {
               clearInterval(timer); // 终止定时器
-              this.count = 5;
+              this.count = 60;
               this.codeStatus = true; // 显示“获取验证码”
             }
           }, 1000);

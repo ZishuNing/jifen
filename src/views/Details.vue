@@ -1,15 +1,15 @@
 <template>
   <div class="details banxin">
-    <Breadcrumb />
+    <Breadcrumb :breadArr="breadArr" />
     <div class="content tanxin">
       <main class="tanxin">
         <div class="main_l">
           <div class="bigImg">
-            <img width="100%" :src="'https://sc.wolfcode.cn'+productInfo.coverImg" alt="" />
+            <img width="100%" v-lazy="'https://sc.wolfcode.cn'+productInfo.coverImg" alt="" />
           </div>
           <ul class="smallImg tanxin">
             <li :class="productActive===index ? 'active' : ''" v-for="item,index in productInfo.imgAltas" :key="index">
-              <img width="100%" :src="'https://sc.wolfcode.cn'+item.src" alt="" />
+              <img width="100%" v-lazy="'https://sc.wolfcode.cn'+item.src" alt="" />
             </li>
           </ul>
         </div>
@@ -40,7 +40,7 @@
         <h3 class="ellipsis">你还可以兑换</h3>
         <ul>
           <li @click="$router.push(`/details/${item.id}`)" class="tanxin" v-for="item in themYouCanBuy" :key="item.id">
-            <img :src="'https://sc.wolfcode.cn'+item.img" alt="">
+            <img v-lazy="'https://sc.wolfcode.cn'+item.img" alt="">
             <section class="tanxin">
               <div class="title ellipsis">{{item.name}}</div>
               <div class="jifen tanxin">{{item.coin}} <img src="../assets/images/home/monad.png" alt=""></div>
@@ -85,6 +85,7 @@ import { GoodsDetailsApi, AddToCartApi } from "@/request/api"
 export default {
   data() {
     return {
+      breadArr: ['首页', '全部商品', '商品详情'],
       // tab栏的当前项
       tabActive: 1,
       // 你还可以兑换
