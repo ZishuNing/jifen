@@ -49,6 +49,7 @@ export default {
       // 根据是否地址栏有code来决定是否做手机绑定微信
       let code = this.$route.query.code;
       if (code) {
+        console.log(123);
         // 通过微信扫码跳转过来首页的
         WeixinLoginApi({ code }).then((res) => {
           if (res.code === 0) {
